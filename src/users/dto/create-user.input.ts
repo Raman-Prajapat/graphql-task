@@ -11,6 +11,9 @@ export class CreateUserInput {
   @Field(() => String)
   email: string;
 
+  @Field(() => String)
+  password: string;
+
   @Field(() => Boolean)
   isActive?: boolean;
 }

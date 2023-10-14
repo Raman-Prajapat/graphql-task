@@ -7,6 +7,7 @@ import { DirectiveLocation, GraphQLDirective } from 'graphql';
 import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './users';
+import { CommonModule } from '@Common';
 
 @Module({
   imports: [
@@ -34,8 +35,17 @@ import { User } from './users';
           }),
         ],
       },
+      formatError: (error) => {
+        const graphQLFormattedError = {
+          message: JSON.stringify(error.extensions?.exception) || error.message,
+          code: error.extensions?.code || 'SERVER_ERROR',
+          name: error.extensions?.exception || error?.message,
+        };
+        return graphQLFormattedError;
+      },
     }),
     UsersModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

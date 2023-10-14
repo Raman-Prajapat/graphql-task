@@ -1,5 +1,4 @@
 import crypto from 'crypto';
-import { customAlphabet } from 'nanoid';
 import _ from 'lodash';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -21,13 +20,6 @@ export class UtilsService {
 
   hashPassword(data: string, salt: string, length: number): string {
     return crypto.scryptSync(data, salt, length).toString('hex');
-  }
-
-  generateRandomToken(length?: number): string {
-    const alphabet =
-      '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    const nanoid = customAlphabet(alphabet);
-    return nanoid(length);
   }
 
   toEnumValue<T>(value: string | number, capitalize = true): T {

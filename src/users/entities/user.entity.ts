@@ -12,3 +12,9 @@ export class User {
   @Field({ nullable: true })
   lastName?: string;
 }
+
+@ObjectType()
+export class LoggedInUser {
+  @Field()
+  accessToken: string;
+}
