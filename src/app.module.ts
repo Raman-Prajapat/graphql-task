@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './users';
 import { CommonModule } from '@Common';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { CommonModule } from '@Common';
     }),
     UsersModule,
     CommonModule,
+    ChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

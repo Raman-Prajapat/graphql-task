@@ -48,6 +48,9 @@ export class UsersService {
       id: user.dataValues.id,
       firstName: user.dataValues.first_name,
       lastName: user.dataValues.last_name,
+      accessToken: this.generateJwt({
+        sub: user.id,
+      }),
     };
   }
 
@@ -97,5 +100,29 @@ export class UsersService {
     );
 
     return 'Updated Successfully';
+  }
+
+  async changePassword(id: number, oldPassword: string, newPassword: string) {
+    const user = await this.findById(id);
+
+    if (!user) throw new Error('User not found');
+
+    if (user.dataValues.password !== md5(oldPassword)) {
+      throw new Error('Password does not match');
+    }
+    await this.userModel.update({ password: newPassword }, { where: { id } });
+
+    return 'Password Changed successfully';
+  }
+
+  async getProfile(id: number) {
+    const user = await this.findById(id);
+    if (!user) throw new Error('User not found');
+    return {
+      id: user.dataValues.id,
+      firstName: user.dataValues.first_name,
+      lastName: user.dataValues.last_name,
+      email: user.dataValues.email,
+    };
   }
 }
