@@ -15,9 +15,6 @@ export class EnvironmentVariables {
   PORT: number;
 
   @IsString()
-  DATABASE_URL: string;
-
-  @IsString()
   REDIS_URI: string;
 
   @IsString()
@@ -25,6 +22,9 @@ export class EnvironmentVariables {
 
   @IsString()
   LOG_DIR: string;
+
+  @IsString()
+  DIALECT: string;
 }
 
 /**

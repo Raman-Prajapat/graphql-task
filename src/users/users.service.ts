@@ -110,7 +110,10 @@ export class UsersService {
     if (user.dataValues.password !== md5(oldPassword)) {
       throw new Error('Password does not match');
     }
-    await this.userModel.update({ password: newPassword }, { where: { id } });
+    await this.userModel.update(
+      { password: md5(newPassword) },
+      { where: { id } },
+    );
 
     return 'Password Changed successfully';
   }

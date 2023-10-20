@@ -29,8 +29,24 @@
 ## Installation
 
 ```bash
-$ npm install
+$ npm run install:dev
 ```
+
+
+### For docker environment
+
+
+```bash
+$ npm run dev:db
+```
+
+For convenience to switch between docker environment to local environment & testing, Please create host entry in your machine with following-
+
+```
+127.0.0.1 postgres
+127.0.0.1 redis
+```
+
 
 ## Running the app
 
@@ -57,16 +73,6 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 

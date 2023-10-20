@@ -9,18 +9,22 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { User } from './users';
 import { CommonModule } from '@Common';
 import { ChatModule } from './chat/chat.module';
+import { dbCredential } from './configs/db.config';
 
 @Module({
   imports: [
     SequelizeModule.forRoot({
-      dialect: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'secret',
-      database: 'graphql-task',
+      dialect: dbCredential.DIALECT,
+      host: dbCredential.HOST,
+      port: dbCredential.PORT,
+      username: dbCredential.USERNAME,
+      password: dbCredential.PASSWORD,
+      database: dbCredential.DATABASE,
       models: [User],
       autoLoadModels: true,
+      sync: {
+        force: true,
+      },
       schema: 'public',
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
